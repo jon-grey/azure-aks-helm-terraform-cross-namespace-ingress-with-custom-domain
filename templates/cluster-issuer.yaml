@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: ${name}
+spec:
+  acme:
+    server: ${server}
+    email: ${email}
+    privateKeySecretRef:
+      name: ${privateKeySecretRef}
+    solvers:
+    - http01:
+        ingress:
+          class: ${namespace}
+          podTemplate:
+            spec:
+              nodeSelector:
+                "kubernetes.io/os": linux

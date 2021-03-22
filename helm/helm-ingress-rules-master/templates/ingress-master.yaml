@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress_class }}
+    cert-manager.io/cluster-issuer:  {{ .Values.cert_manager_cluster_issuer }}
+    nginx.org/mergeable-ingress-type: "master"    
+spec:
+  tls:
+  - hosts:
+    - {{ .Values.ingress_public_url }}
+    secretName: {{ .Values.ingress_secret_name }}
+  rules:
+  - host: {{ .Values.ingress_public_url }}
+
+

@@ -1,0 +1,21 @@
+{{- if .Values.backend.enabled -}}
+kind: Service
+apiVersion: v1
+metadata:
+  name: customer-{{ .Values.customer_id }}-{{ .Values.backend_name }}-extnme-svc
+spec:
+  type: ExternalName
+  externalName: {{ .Values.backend_name }}-api.{{ .Values.customer_ns }}.svc.cluster.local
+  ports:
+  - port: 80
+{{- end }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: customer-{{ .Values.customer_id }}-{{ .Values.frontend_name }}-extnme-svc
+spec:
+  type: ExternalName
+  externalName: {{ .Values.frontend_name }}-svc.{{ .Values.customer_ns }}.svc.cluster.local
+  ports:
+  - port: 80

@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.customer_id }}-{{ .Values.backend_name }}-extnme-svc
+spec:
+  type: ExternalName
+  externalName: {{ .Values.backend_name }}-svc.{{ .Values.customer_ns }}.svc.cluster.local
+  ports:
+  - port: 80

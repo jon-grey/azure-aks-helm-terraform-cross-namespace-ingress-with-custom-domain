@@ -1,0 +1,7 @@
+customer_ns: "<customer_ns>"
+ingress_class: "<ingress_class>"
+ingress_public_url: "<ingress_public_url>"
+backend_name: "<backend_name>"
+frontend_name: "<frontend_name>"
+backend:
+    enabled: true

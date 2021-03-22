@@ -1,0 +1,67 @@
+{{- if .Values.backend.enabled -}}
+# apiVersion: networking.k8s.io/v1beta1
+# kind: Ingress
+# metadata:
+#   name: {{ .Release.Name }}-backend
+#   annotations:
+#     kubernetes.io/ingress.class: {{ .Values.ingress_class }}
+#     nginx.org/mergeable-ingress-type: "minion"
+#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+#     nginx.ingress.kubernetes.io/rewrite-target: /api/$2
+# spec:
+#   rules:
+#   - host: {{ .Values.ingress_public_url }}
+#     http:
+#       paths:
+#       - backend:
+#           serviceName: customer-{{ .Values.customer_id }}-{{ .Values.backend_name }}-extnme-svc
+#           servicePort: 80
+#         path: "/{{ .Values.customer_id }}/api(/|$)(.*)"
+{{- end }}
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-frontend
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress_class }}
+    nginx.org/mergeable-ingress-type: "minion"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+  - host: {{ .Values.ingress_public_url }}
+    http:
+      paths:
+      - backend:
+          serviceName: customer-{{ .Values.customer_id }}-{{ .Values.frontend_name }}-extnme-svc
+          servicePort: 80
+        path: "/"
+
+
+#name: customer-{{ .Values.customer_id }}-{{ .Values.backend_name }}-extnme-svc
+#name: customer-{{ .Values.customer_id }}-{{ .Values.frontend_name }}-extnme-svc
+
+
+### WORKS
+
+# apiVersion: networking.k8s.io/v1beta1
+# kind: Ingress
+# metadata:
+#   name: {{ .Release.Name }}-backend
+#   annotations:
+#     kubernetes.io/ingress.class: {{ .Values.ingress_class }}
+#     nginx.org/mergeable-ingress-type: "minion"
+#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+#     nginx.ingress.kubernetes.io/rewrite-target: /api/$2
+# spec:
+#   rules:
+#   - host: {{ .Values.ingress_public_url }}
+#     http:
+#       paths:
+#       - backend:
+#           serviceName: customer-{{ .Values.customer_id }}-{{ .Values.backend_name }}-extnme-svc
+#           servicePort: 80
+#         path: "/{{ .Values.customer_id }}/api(/|$)(.*)"
