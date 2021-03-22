@@ -17,13 +17,17 @@
 ## Step 0.1 - Populate exports-private.sh
 
 ```sh
-export SUBSCRIPTION_ID=""
-export RESOURCE_GROUP=resource-group-demo
-export DOMAIN_NAME="example.com"
-export ACR_NAME=containerRegistry000
-export AKS_CLUSTER=aks-cluster-000
-export SERVICE_PRINCIPAL_NAME=aks-cluster-svc-principal-000
-export REGION="germanywestcentral"
+export AZURE_SUBSCRIPTION_ID="" # find in azure portal
+export AZURE_RESOURCE_GROUP=aks-resource-group-demo
+export AZURE_CONTAINER_REGISTRY="" #[a-z0-9]
+export AZURE_AKS_CLUSTER=aks-cluster-demo-000
+export AZURE_AKS_DNS_PREFIX=aks-dns-demo-000
+export AZURE_SERVICE_PRINCIPAL=azure-cli-2021-03-21-19-00-00
+export AZURE_LOCATION="germanywestcentral"
+export CUSTOM_DOMAIN="example.com"
+export LETSENCRYPT_EMAIL="example@gmail.com"
+export AZURE_ASK_NODES_ADMIN="demo"
+
 ```
 
 ## Step 0.2 - Populate variables.tf
