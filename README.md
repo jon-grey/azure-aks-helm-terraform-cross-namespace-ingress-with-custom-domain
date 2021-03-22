@@ -14,6 +14,24 @@
 
 [Custom domains in Azure Kubernetes Service (AKS) with NGINX Ingress and Azure DNS](https://thorsten-hans.com/custom-domains-in-azure-kubernetes-with-nginx-ingress-azure-cli)
 
+## Step 0.1 - Populate exports-private.sh
+
+```sh
+export SUBSCRIPTION_ID=""
+export RESOURCE_GROUP=resource-group-demo
+export DOMAIN_NAME="example.com"
+export ACR_NAME=containerRegistry000
+export AKS_CLUSTER=aks-cluster-000
+export SERVICE_PRINCIPAL_NAME=aks-cluster-svc-principal-000
+export REGION="germanywestcentral"
+```
+
+## Step 0.2 - Populate variables.tf
+
+> FIXME: kinda should reduce those two variable files
+
+
+
 # Step 1 - Provision AKS Cluster
 
 ```sh

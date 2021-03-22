@@ -3,7 +3,6 @@ variable "email" {
 
 }
 
-
 variable "client_id" {
   description = "Azure Kubernetes Service Cluster service principal"
 }

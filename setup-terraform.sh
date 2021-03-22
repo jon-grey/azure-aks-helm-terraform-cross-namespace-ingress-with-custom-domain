@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-. ~/W/exports-private.sh
+. exports-private.sh
 
 # Generate Azure client id and secret.
 export RBAC_JSON="$HOME/W/rbac.json"
@@ -49,26 +49,4 @@ kubectl get nodes
 
 az account set --subscription $SUBSCRIPTION_ID
 az aks get-credentials --resource-group $(terraform output -raw resource_group_name) --name $(terraform output -raw kubernetes_cluster_name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
