@@ -1,6 +1,5 @@
 variable "email" {
-  default = "robgrzelka@gmail.com"
-
+  description = "Email to be used with ClusterIssuer for CertManager"
 }
 
 variable "client_id" {
@@ -18,17 +17,17 @@ variable "location" {
 
 variable "resource_group_name" {
   description = "Azure resources group"
-  default = "aks-resource-group-demo-010"
+  default = "aks-resource-group-demo"
 }
 
 variable "dns_prefix" {
   description = "Azure DNS prefix"
-  default = "aks-dns-demo-010"
+  default = "aks-dns-demo-000"
 }
 
 variable "cluster_name" {
   description = "Azure AKS cluster name"
-  default = "aks-cluster-demo-010"
+  default = "aks-cluster-demo-000"
 }
 
 variable "agent_count" {
@@ -36,9 +35,9 @@ variable "agent_count" {
 }
 
 variable "admin_username" {
-    default = "demo"
+  description = "Azure AKS nodes admin account username"
+  default = "demo"
 }
-
 
 
 variable "default_namespace" {
@@ -77,7 +76,7 @@ variable "ingress_controller_class" {
 }
 
 variable "ingress_azurerm_dns_zone" {
-  default = "lubiewarzywka.pl"
+  default = "example.com"
 }
 
 variable "ingress_controller_fqdn_dns_label" {

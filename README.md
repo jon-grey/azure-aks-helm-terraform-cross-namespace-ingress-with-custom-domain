@@ -44,3 +44,7 @@ bash setup-terraform.sh
 terraform plan # validate
 terraform apply # deploy
 ```
+
+# TODO
+
+Split cluster deployment and app deployment on modules.
