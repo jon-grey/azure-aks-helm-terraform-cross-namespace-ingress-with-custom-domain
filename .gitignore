@@ -7,6 +7,9 @@
 *.tfvars*
 *.tfvars.*
 
+# custom files
+exports-private.sh
+
 # Crash log files
 crash.log
 
