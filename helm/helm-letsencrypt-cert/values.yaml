@@ -1,0 +1,3 @@
+private_key_secret_ref: "<error>" #letsencrypt-staging
+certificate_letsencrypt_name: "<error>" #"tls-secret-staging"
+domain_name: "<error>" #example.com

@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-dpl
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}-lab
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}-lab
+    spec:
+      containers:
+      - name: {{ .Values.name }}
+        image: {{ .Values.registry }}/{{ .Values.image }}:{{ .Values.tag }}
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+        env:
+        - name: TITLE
+          value: {{ .Values.name }}-title-customer-{{ .Values.customer_id }}

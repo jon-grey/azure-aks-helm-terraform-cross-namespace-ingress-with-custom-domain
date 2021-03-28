@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.customer_id }}-{{ .Values.app_name }}-extnme-svc
+spec:
+  type: ExternalName
+  externalName: {{ .Values.app_name }}-svc.{{ .Values.customer_ns }}.svc.cluster.local
+  ports:
+  - port: {{ .Values.app_container_port }}

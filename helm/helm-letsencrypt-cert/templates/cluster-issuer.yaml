@@ -1,0 +1,12 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: {{ .Values.certificate_letsencrypt_name }} #"tls-secret-staging"
+spec:
+  secretName: {{ .Values.certificate_letsencrypt_name }} #"tls-secret-staging"
+  issuerRef:
+    name: {{ .Values.private_key_secret_ref }}  #letsencrypt-staging
+    kind: ClusterIssuer
+  dnsNames:
+  - {{ .Values.domain_name }}

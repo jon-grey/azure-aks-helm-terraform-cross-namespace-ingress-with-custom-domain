@@ -1,0 +1,7 @@
+name: "<error>"
+replicas: 1
+registry: "<error>"
+image: "<error>"
+tag: latest
+containerPort: 80
+customer_id: "<error>"

@@ -1,0 +1,1 @@
+kubectl delete -n kube-system -f https://github.com/jetstack/cert-manager/releases/download/v0.16.1/cert-manager.yaml

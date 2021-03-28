@@ -1,0 +1,5 @@
+cluster_issuer_letsencrypt_name:  "<error>" #letsencrypt-staging
+lets_encrypt_server_url:  "<error>" #"https://acme-staging-v02.api.letsencrypt.org/directory"
+private_key_secret_ref:  "<error>" #letsencrypt-staging
+ingress_controller_class:  "<error>" #ingress-nginx-cls
+email: "<error>" #email@gmail.com

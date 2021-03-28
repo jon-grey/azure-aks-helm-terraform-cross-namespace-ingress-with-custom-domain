@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: {{ .Values.cluster_issuer_letsencrypt_name }} #letsencrypt-staging
+spec:
+  acme:
+    server: {{ .Values.lets_encrypt_server_url }} # https://acme-staging-v02.api.letsencrypt.org/directory
+    email: {{ .Values.email }}
+    privateKeySecretRef:
+      name: {{ .Values.private_key_secret_ref }} #letsencrypt-staging
+    solvers:
+    - http01:
+        ingress:
+          class: {{ .Values.ingress_controller_class }}
+          podTemplate:
+            spec:
+              nodeSelector:
+                "kubernetes.io/os": linux

@@ -1,0 +1,7 @@
+ingress_class: "<error>"
+ingress_public_url: "<error>" #my-dns.my-region.cloudapp.azure.com
+ingress_secret_name: "<error>" #"tls-secret"
+cert_manager_cluster_issuer: "<error>" #"letsencrypt-staging"
+
+
+
