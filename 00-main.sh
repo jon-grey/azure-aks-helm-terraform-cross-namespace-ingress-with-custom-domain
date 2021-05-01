@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-dqt='"'
+DQT='"'
 
 ###########################################################################
 #### Create service principal and save to $HOME/rbac.json
@@ -12,7 +12,7 @@ dqt='"'
 az account set --subscription $AZURE_SUBSCRIPTION_ID
 az aks get-credentials \
 	--resource-group $AZURE_RESOURCE_GROUP \
-	--name $AZURE_AKS_CLUSTER || true
+	--name $AZURE_AKS_CLUSTER_NAME || true
 
 # Generate Azure client id and secret.
 export RBAC_JSON="$HOME/rbac.json"
@@ -37,7 +37,7 @@ echo $RBAC
 ###########################################################################
 
 function rdict {
-	python3 -c "print($1[${dqt}$2${dqt}])"
+	python3 -c "print($1[${DQT}$2${DQT}])"
 }
 
 ARM_TENANT_ID=$(rdict     "$RBAC" "tenant")
@@ -51,16 +51,16 @@ ARM_CLIENT_SECRET=$(rdict "$RBAC" "password")
 TFVARS="terraform.tfvars"
 
 echo "
-client_id                = ${dqt}${ARM_CLIENT_ID}${dqt}
-client_secret            = ${dqt}${ARM_CLIENT_SECRET}${dqt}
-location                 = ${dqt}${AZURE_LOCATION}${dqt}
-resource_group_name      = ${dqt}${AZURE_RESOURCE_GROUP}${dqt}
-container_registry_name  = ${dqt}${AZURE_CONTAINER_REGISTRY}${dqt}
-dns_prefix               = ${dqt}${AZURE_AKS_DNS_PREFIX}${dqt}
-admin_username           = ${dqt}${AZURE_ASK_NODES_ADMIN}${dqt}
-cluster_name             = ${dqt}${AZURE_AKS_CLUSTER}${dqt}
-ingress_azurerm_dns_zone = ${dqt}${CUSTOM_DOMAIN}${dqt}
-email                    = ${dqt}${LETSENCRYPT_EMAIL}${dqt}
+client_id                = ${DQT}${ARM_CLIENT_ID}${DQT}
+client_secret            = ${DQT}${ARM_CLIENT_SECRET}${DQT}
+location                 = ${DQT}${AZURE_LOCATION}${DQT}
+resource_group_name      = ${DQT}${AZURE_RESOURCE_GROUP}${DQT}
+container_registry_name  = ${DQT}${AZURE_CONTAINER_REGISTRY}${DQT}
+dns_prefix               = ${DQT}${AZURE_AKS_DNS_PREFIX}${DQT}
+admin_username           = ${DQT}${AZURE_AKS_NODES_ADMIN}${DQT}
+cluster_name             = ${DQT}${AZURE_AKS_CLUSTER_NAME}${DQT}
+ingress_azurerm_dns_zone = ${DQT}${CUSTOM_DOMAIN}${DQT}
+email                    = ${DQT}${LETSENCRYPT_EMAIL}${DQT}
 " > $TFVARS
 cat $TFVARS
 
@@ -98,4 +98,4 @@ kubectl get nodes
 
 az aks get-credentials \
 	--resource-group $AZURE_RESOURCE_GROUP \
-	--name $AZURE_AKS_CLUSTER || true
+	--name $AZURE_AKS_CLUSTER_NAME || true

@@ -22,7 +22,7 @@ provider "azurerm" {
 #### STAGE A 1.0
 #######################################################################################
 
-resource "azurerm_resource_group" "k8s" {
+data "azurerm_resource_group" "aks" {
   name     = var.resource_group_name
   location = var.location
 
@@ -43,7 +43,7 @@ module "a_acr" {
   container_registry_name = var.container_registry_name
 
   depends_on = [
-        azurerm_resource_group.k8s
+        azurerm_resource_group.aks
   ]
 }
 #######################################################################################
@@ -61,10 +61,10 @@ module "a_aks_cluster" {
   agent_count = var.agent_count
   client_id = var.client_id
   client_secret = var.client_secret
-  azurerm_resource_group_k8s_name = azurerm_resource_group.k8s.name
+  azurerm_resource_group_k8s_name = azurerm_resource_group.aks.name
 
   depends_on = [
-        azurerm_resource_group.k8s
+        azurerm_resource_group.aks
   ]
 }
 #######################################################################################
@@ -141,7 +141,7 @@ module "b_custom_domain" {
   aks_cluster_node_resource_group = module.a_aks_cluster.node_resource_group
 
   depends_on = [
-    azurerm_resource_group.k8s,
+    azurerm_resource_group.aks,
     module.a_aks_cluster,
     local_file.aksconfig
   ]

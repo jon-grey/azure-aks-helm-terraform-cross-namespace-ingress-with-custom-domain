@@ -1,7 +1,7 @@
 
 
 # az aks create \
-#     -n $AZURE_AKS_CLUSTER \
+#     -n $AZURE_AKS_CLUSTER_NAME \
 #     -g $AZURE_RESOURCE_GROUP \
 #     -l $AZURE_LOCATION \
 #     -c 2 \
@@ -23,7 +23,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
     ## SSH key is generated using "tls_private_key" resource
     ssh_key {
-      key_data = "${trimspace(tls_private_key.k8s-key.public_key_openssh)} ${var.admin_username}@azure.com"
+      key_data = "${trimspace(tls_private_key.aks-key.public_key_openssh)} ${var.admin_username}@azure.com"
     }
   }
 
@@ -69,13 +69,13 @@ resource "tls_private_key" "k8s-key" {
 ## Save the private key in the local workspace ##
 resource "null_resource" "k8s-save-key" {
   triggers = {
-    key = tls_private_key.k8s-key.private_key_pem
+    key = tls_private_key.aks-key.private_key_pem
   }
 
   provisioner "local-exec" {
     command = <<EOF
       mkdir -p ${path.root}/.ssh
-      echo "${tls_private_key.k8s-key.private_key_pem}" > ${path.root}/.ssh/id_rsa
+      echo "${tls_private_key.aks-key.private_key_pem}" > ${path.root}/.ssh/id_rsa
       chmod 0600 ${path.root}/.ssh/id_rsa
 EOF
   }
