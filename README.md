@@ -17,13 +17,13 @@
 export AZURE_SUBSCRIPTION_ID="53cda94b-a...."
 export AZURE_RESOURCE_GROUP=aks-resource-group-demo
 export AZURE_CONTAINER_REGISTRY=containerregistry003
-export AZURE_AKS_CLUSTER=aks-cluster-demo-000
+export AZURE_AKS_CLUSTER_NAME=aks-cluster-demo-000
 export AZURE_AKS_DNS_PREFIX=aks-dns-demo-000
 export AZURE_SERVICE_PRINCIPAL=azure-cli-2021-03-21-19-00-00
 export AZURE_LOCATION="germanywestcentral"
 export CUSTOM_DOMAIN="lubiewarzywka.pl"
 export LETSENCRYPT_EMAIL="rob...@....."
-export AZURE_ASK_NODES_ADMIN="demo"
+export AZURE_AKS_NODES_ADMIN="demo"
 ```
 
 ## Step 2
@@ -48,7 +48,7 @@ In local development build containers with
 . exports-private.sh
 az login
 az account set --subscription $AZURE_SUBSCRIPTION_ID
-az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_AKS_CLUSTER
+az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AZURE_AKS_CLUSTER_NAME
 az acr login -n $AZURE_CONTAINER_REGISTRY.azurecr.io
 
 # example build and push images to registry
